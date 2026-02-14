@@ -41,25 +41,30 @@ export default function RomanticApology() {
   };
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "linear-gradient(to bottom right, #fbcfe8, #ffe4e6, #e9d5ff)",
-      padding: "24px",
-      position: "relative",
-      overflow: "hidden"
-    }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "linear-gradient(to bottom right, #fbcfe8, #ffe4e6, #e9d5ff)",
+        padding: "24px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       {showExplosion && (
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none"
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
           {Array.from({ length: 16 }).map((_, i) => {
             const angle = (i / 16) * 2 * Math.PI;
             const radius = 160;
@@ -83,31 +88,61 @@ export default function RomanticApology() {
         </div>
       )}
 
-      <motion.div style={{ width: "100%", maxWidth: "700px", textAlign: "center" }}>
+      <motion.div
+        style={{
+          width: "100%",
+          maxWidth: "820px",
+          textAlign: "center",
+          background: "white",
+          padding: "48px 40px",
+          borderRadius: "32px",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.15)",
+        }}
+      >
         {!accepted ? (
           <>
-            <h1 style={{ fontSize: "28px", marginBottom: "24px", color: "#be185d" }}>
+            <h1
+              style={{
+                fontSize: "28px",
+                marginBottom: "24px",
+                color: "#be185d",
+              }}
+            >
               Shristi ❤️
             </h1>
 
-            <p style={{ fontSize: "18px", marginBottom: "24px", lineHeight: 1.6 }}>
+            <p
+              style={{
+                fontSize: "18px",
+                marginBottom: "24px",
+                lineHeight: 1.6,
+              }}
+            >
               There’s no excuse for not putting in effort when it comes to you.
               When things feel heavy, love should get stronger — not quieter.
               I want you. I want us. And I’m choosing to step up.
             </p>
 
-            <p style={{ fontSize: "18px", marginBottom: "24px", color: "#db2777" }}>
+            <p
+              style={{
+                fontSize: "18px",
+                marginBottom: "24px",
+                color: "#db2777",
+              }}
+            >
               Will you forgive me and let me take you on a proper date? 💐
             </p>
 
             <div style={{ marginBottom: "24px" }}>
-              <div style={{
-                width: "100%",
-                background: "#fecdd3",
-                borderRadius: "999px",
-                height: "10px",
-                overflow: "hidden"
-              }}>
+              <div
+                style={{
+                  width: "100%",
+                  background: "#fecdd3",
+                  borderRadius: "999px",
+                  height: "10px",
+                  overflow: "hidden",
+                }}
+              >
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${Math.min(noAttempts * 20, 100)}%` }}
@@ -117,30 +152,67 @@ export default function RomanticApology() {
               </div>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", gap: "24px", position: "relative", height: "80px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "24px",
+                position: "relative",
+                height: "80px",
+              }}
+            >
               <div
                 onMouseEnter={() => setShowHearts(true)}
                 onMouseLeave={() => setShowHearts(false)}
                 style={{ position: "relative" }}
               >
                 {showHearts && (
-                  <div style={{ position: "absolute", top: "-30px", left: "50%", transform: "translateX(-50%)" }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-30px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
                     💕 💖 💘
                   </div>
                 )}
                 <button
                   onClick={handleYesClick}
-                  style={{ padding: "12px 24px", fontSize: "16px", borderRadius: "16px", border: "none", background: "#ec4899", color: "white", cursor: "pointer" }}
+                  style={{
+                    padding: "12px 24px",
+                    fontSize: "16px",
+                    borderRadius: "16px",
+                    border: "none",
+                    background: "#ec4899",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
                 >
                   {noAttempts >= 3 ? "Please Just Say Yes" : "Yes"}
                 </button>
               </div>
 
               {noAttempts < 7 && (
-                <div style={{ position: "relative", top: noPosition.top, left: noPosition.left }}>
+                <div
+                  style={{
+                    position: "relative",
+                    top: noPosition.top,
+                    left: noPosition.left,
+                  }}
+                >
                   <button
                     onMouseEnter={moveNoButton}
-                    style={{ padding: "12px 24px", fontSize: "16px", borderRadius: "16px", border: "none", background: "#9ca3af", color: "white", cursor: "pointer" }}
+                    style={{
+                      padding: "12px 24px",
+                      fontSize: "16px",
+                      borderRadius: "16px",
+                      border: "none",
+                      background: "#9ca3af",
+                      color: "white",
+                      cursor: "pointer",
+                    }}
                   >
                     {noAttempts >= 5 ? "Okay fine you win 😭" : noText}
                   </button>
@@ -150,7 +222,13 @@ export default function RomanticApology() {
           </>
         ) : (
           <div style={{ maxWidth: "900px" }}>
-            <h2 style={{ fontSize: "26px", marginBottom: "16px", color: "#be185d" }}>
+            <h2
+              style={{
+                fontSize: "26px",
+                marginBottom: "16px",
+                color: "#be185d",
+              }}
+            >
               I already knew itttt!!! 💘
             </h2>
 
@@ -165,8 +243,24 @@ export default function RomanticApology() {
             )}
 
             <div style={{ columnCount: 2, columnGap: "16px" }}>
-              {["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"].map((src, index) => (
-                <div key={index} style={{ breakInside: "avoid", marginBottom: "16px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}>
+              {[
+                "photo1.jpg",
+                "photo2.jpg",
+                "photo3.jpg",
+                "photo4.jpg",
+                "photo5.jpg",
+                "photo6.jpg",
+              ].map((src, index) => (
+                <div
+                  key={index}
+                  style={{
+                    breakInside: "avoid",
+                    marginBottom: "16px",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+                  }}
+                >
                   <img
                     src={`/${src}`}
                     alt={`Memory ${index + 1}`}
