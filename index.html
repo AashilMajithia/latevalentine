@@ -1,146 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>For Shristi ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff0f5;
-      text-align: center;
-      overflow-x: hidden;
-    }
+export default function RomanticApology() {
+  const [noPosition, setNoPosition] = useState({ top: 0, left: 0 });
+  const [accepted, setAccepted] = useState(false);
+  const [noText, setNoText] = useState("No 😅");
+  const [noAttempts, setNoAttempts] = useState(0);
+  const [showHearts, setShowHearts] = useState(false);
+  const [showExplosion, setShowExplosion] = useState(false);
+  const [showSecret, setShowSecret] = useState(false);
 
-    h1 {
-      margin-top: 40px;
-      font-size: 2.5rem;
-      color: #d63384;
-    }
+  const flirtyMessages = [
+    "Are you sure? 👀",
+    "Oyee, be nice 😌",
+    "You don’t mean that 😏",
+    "That’s not very forgiving of you 💋",
+    "Come on baby… you love me really ❤️",
+    "Okay now you’re just being mean 😭",
+  ];
 
-    p {
-      font-size: 1.2rem;
-      color: #444;
-    }
+  const moveNoButton = () => {
+    const randomTop = Math.floor(Math.random() * 200) - 100;
+    const randomLeft = Math.floor(Math.random() * 200) - 100;
 
-    .buttons {
-      margin: 30px 0;
-    }
+    setNoPosition({ top: randomTop, left: randomLeft });
+    setNoAttempts((prev) => prev + 1);
 
-    button {
-      padding: 12px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      margin: 10px;
-      transition: 0.2s ease;
-    }
+    const randomMessage =
+      flirtyMessages[Math.floor(Math.random() * flirtyMessages.length)];
+    setNoText(randomMessage);
+  };
 
-    .yes {
-      background: #ff4d6d;
-      color: white;
-    }
+  const handleYesClick = () => {
+    setShowExplosion(true);
 
-    .no {
-      background: #ccc;
-    }
+    setTimeout(() => {
+      setAccepted(true);
+      setShowSecret(true);
+    }, 600);
+  };
 
-    .gallery {
-      column-count: 3;
-      column-gap: 15px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+  return (
+    <div style={{
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "linear-gradient(to bottom right, #fbcfe8, #ffe4e6, #e9d5ff)",
+      padding: "24px",
+      position: "relative",
+      overflow: "hidden"
+    }}>
+      {showExplosion && (
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none"
+        }}>
+          {Array.from({ length: 16 }).map((_, i) => {
+            const angle = (i / 16) * 2 * Math.PI;
+            const radius = 160;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 1, scale: 0.5 }}
+                animate={{
+                  x: Math.cos(angle) * radius,
+                  y: Math.sin(angle) * radius,
+                  opacity: 0,
+                  scale: 1,
+                }}
+                transition={{ duration: 0.8 }}
+                style={{ position: "absolute", fontSize: "28px" }}
+              >
+                💖
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
 
-    .gallery img {
-      width: 100%;
-      margin-bottom: 15px;
-      border-radius: 15px;
-      break-inside: avoid;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+      <motion.div style={{ width: "100%", maxWidth: "700px", textAlign: "center" }}>
+        {!accepted ? (
+          <>
+            <h1 style={{ fontSize: "28px", marginBottom: "24px", color: "#be185d" }}>
+              Shristi ❤️
+            </h1>
 
-    .heart {
-      position: fixed;
-      font-size: 24px;
-      animation: floatUp 2s ease-out forwards;
-    }
+            <p style={{ fontSize: "18px", marginBottom: "24px", lineHeight: 1.6 }}>
+              There’s no excuse for not putting in effort when it comes to you.
+              When things feel heavy, love should get stronger — not quieter.
+              I want you. I want us. And I’m choosing to step up.
+            </p>
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-200px);
-        opacity: 0;
-      }
-    }
+            <p style={{ fontSize: "18px", marginBottom: "24px", color: "#db2777" }}>
+              Will you forgive me and let me take you on a proper date? 💐
+            </p>
 
-    @media (max-width: 768px) {
-      .gallery {
-        column-count: 2;
-      }
-    }
+            <div style={{ marginBottom: "24px" }}>
+              <div style={{
+                width: "100%",
+                background: "#fecdd3",
+                borderRadius: "999px",
+                height: "10px",
+                overflow: "hidden"
+              }}>
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${Math.min(noAttempts * 20, 100)}%` }}
+                  transition={{ duration: 0.4 }}
+                  style={{ height: "10px", background: "#f43f5e" }}
+                />
+              </div>
+            </div>
 
-    @media (max-width: 480px) {
-      .gallery {
-        column-count: 1;
-      }
-    }
-  </style>
-</head>
-<body>
+            <div style={{ display: "flex", justifyContent: "center", gap: "24px", position: "relative", height: "80px" }}>
+              <div
+                onMouseEnter={() => setShowHearts(true)}
+                onMouseLeave={() => setShowHearts(false)}
+                style={{ position: "relative" }}
+              >
+                {showHearts && (
+                  <div style={{ position: "absolute", top: "-30px", left: "50%", transform: "translateX(-50%)" }}>
+                    💕 💖 💘
+                  </div>
+                )}
+                <button
+                  onClick={handleYesClick}
+                  style={{ padding: "12px 24px", fontSize: "16px", borderRadius: "16px", border: "none", background: "#ec4899", color: "white", cursor: "pointer" }}
+                >
+                  {noAttempts >= 3 ? "Please Just Say Yes" : "Yes"}
+                </button>
+              </div>
 
-  <h1>Shristi ❤️</h1>
-  <p>There’s no excuse. Just honesty. I care about you deeply.</p>
-  <p>Can we move forward together?</p>
+              {noAttempts < 7 && (
+                <div style={{ position: "relative", top: noPosition.top, left: noPosition.left }}>
+                  <button
+                    onMouseEnter={moveNoButton}
+                    style={{ padding: "12px 24px", fontSize: "16px", borderRadius: "16px", border: "none", background: "#9ca3af", color: "white", cursor: "pointer" }}
+                  >
+                    {noAttempts >= 5 ? "Okay fine you win 😭" : noText}
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div style={{ maxWidth: "900px" }}>
+            <h2 style={{ fontSize: "26px", marginBottom: "16px", color: "#be185d" }}>
+              I already knew itttt!!! 💘
+            </h2>
 
-  <div class="buttons">
-    <button class="yes" onclick="sayYes()">Yes ❤️</button>
-    <button class="no" onclick="moveNo(this)">No 😅</button>
-  </div>
+            <p style={{ marginBottom: "16px" }}>
+              Thank you for giving us another chance. I won’t take that lightly.
+            </p>
 
-  <div class="gallery">
-    <!-- Upload your images into the repo root -->
-    <img src="photo1.jpg" alt="">
-    <img src="photo2.jpg" alt="">
-    <img src="photo3.jpg" alt="">
-    <img src="photo4.jpg" alt="">
-    <img src="photo5.jpg" alt="">
-    <img src="photo6.jpg" alt="">
-  </div>
+            {showSecret && (
+              <p style={{ marginBottom: "32px", color: "#db2777" }}>
+                From our first laugh together… to now. I still choose you. ❤️
+              </p>
+            )}
 
-  <script>
-    function moveNo(button) {
-      button.style.position = "absolute";
-      button.style.top = Math.random() * window.innerHeight + "px";
-      button.style.left = Math.random() * window.innerWidth + "px";
-    }
-
-    function sayYes() {
-      for (let i = 0; i < 30; i++) {
-        let heart = document.createElement("div");
-        heart.innerHTML = "❤️";
-        heart.classList.add("heart");
-
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.top = window.innerHeight - 50 + "px";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 2000);
-      }
-
-      alert("I knew you would say yes ❤️");
-    }
-  </script>
-
-</body>
-</html>
+            <div style={{ columnCount: 2, columnGap: "16px" }}>
+              {["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"].map((src, index) => (
+                <div key={index} style={{ breakInside: "avoid", marginBottom: "16px", borderRadius: "16px", overflow: "hidden", boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}>
+                  <img
+                    src={`/${src}`}
+                    alt={`Memory ${index + 1}`}
+                    style={{ width: "100%", display: "block" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </div>
+  );
+}
