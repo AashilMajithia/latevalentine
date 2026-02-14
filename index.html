@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I'm Sorry ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary-color: #ff4d88;  /* bright rose-pink */
+      --bg-light: #fff5f9;       /* very light pink */
+      --text-color: #333;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, var(--bg-light), #ffffff);
+      color: var(--text-color);
+    }
+    header {
+      position: relative;
+      text-align: center;
+      padding: 100px 20px;
+      background: #ffdced;  /* soft pink background */
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: fadeInDown 1s ease-out forwards;
+      opacity: 0;
+    }
+    header p {
+      font-size: 1.25rem;
+      margin-top: 20px;
+      animation: fadeInDown 1s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInDown {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-20px); }
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    h2 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    p { line-height: 1.6; }
+
+    /* Interactive button */
+    #celebrateBtn {
+      background: var(--primary-color);
+      color: white;
+      font-size: 1rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #celebrateBtn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Floating heart styles */
+    .heart {
+      position: absolute;
+      color: #ff4573;
+      font-size: 24px;
+      pointer-events: none;
+      animation: floatUp 1.2s ease-out forwards;
+    }
+    @keyframes floatUp {
+      to { transform: translate(-50%, -200%) scale(1.4); opacity: 0; }
+      from { transform: translate(-50%, -100%) scale(1); opacity: 1; }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      background: #ffe6f0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>I'm Sorry... 🙏💕</h1>
+  <p>I miss you more than words can say. Will you forgive me?</p>
+</header>
+
+<main>
+  <section>
+    <h2>My Apology</h2>
+    <p>Hey sweetheart, I know I let you down and I deeply regret it. You deserve to feel loved and special – especially on Valentine's Day. I failed to make your day as perfect as you are, and I’m truly sorry. 😢</p>
+  </section>
+
+  <section>
+    <h2>Why You’re Amazing</h2>
+    <p>You’re the most caring, beautiful person I know. Your smile lights up my world and your kindness inspires me every day. Even when things are hard, your love and support mean everything to me. You deserve the world, and I want to give that to you. 🌹❤️</p>
+  </section>
+
+  <section>
+    <h2>My Promise</h2>
+    <p>I promise to learn from this and make it up to you. I will always cherish you and try harder to show you how much I appreciate you. No more empty words – just actions. You can count on me to make our future brighter. ✨</p>
+  </section>
+
+  <section id="interactive">
+    <button id="celebrateBtn">Yes, I forgive you 🥰</button>
+  </section>
+</main>
+
+<footer>
+  ❤️ Always yours, <strong><em>Your Name</em></strong>
+</footer>
+
+<!-- Confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+  // Floating hearts on mouse move
+  let lastTime = 0;
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastTime < 150) return;  // limit frequency
+    lastTime = now;
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '💖';
+    heart.style.left = e.pageX + 'px';
+    heart.style.top = e.pageY + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+  });
+
+  // Confetti on button click
+  const btn = document.getElementById('celebrateBtn');
+  btn.addEventListener('click', () => {
+    confetti({
+      particleCount: 100,
+      spread: 60,
+      origin: { y: 0.6 },
+      colors: ['#ff4d88', '#ff6699', '#ff99cc']
+    });
+  });
+</script>
